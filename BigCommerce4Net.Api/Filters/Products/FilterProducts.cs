@@ -105,6 +105,11 @@ namespace BigCommerce4Net.Api
         public bool? IsFeatured { get; set; }
 
         /// <summary>
+        /// Should SKUs be included in the return?
+        /// </summary>
+        public bool? IncludeSkus { get; set; }
+
+        /// <summary>
         /// Filter by inventory level.
         /// </summary>
         public int? MimimumInventoryLevel { get; set; }

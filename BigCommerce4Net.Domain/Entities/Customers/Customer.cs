@@ -25,7 +25,8 @@ namespace BigCommerce4Net.Domain
     public class Customer : EntityBase
     {
 
-        public Customer() {
+        public Customer()
+        {
             Addresses = new List<CustomersAddress>();
         }
 
@@ -91,11 +92,14 @@ namespace BigCommerce4Net.Domain
         public virtual DateTime? DateCreated { get; set; }
 
         [JsonProperty("date_created")]
-        public virtual string DateCreatedUT {
-            get {
+        public virtual string DateCreatedUT
+        {
+            get
+            {
                 return DateCreated.DateTimeToString();
             }
-            set {
+            set
+            {
                 DateCreated = value.StringToDateTime();
             }
         }
@@ -107,11 +111,14 @@ namespace BigCommerce4Net.Domain
         public virtual DateTime? DateModified { get; set; }
 
         [JsonProperty("date_modified")]
-        public virtual string DateModifiedUT {
-            get {
+        public virtual string DateModifiedUT
+        {
+            get
+            {
                 return DateModified.DateTimeToString();
             }
-            set {
+            set
+            {
                 DateModified = value.StringToDateTime();
             }
         }
@@ -139,6 +146,12 @@ namespace BigCommerce4Net.Domain
         public virtual int CustomerGroupId { get; set; }
 
         /// <summary>
+        /// If true - this customer has opted-in to marketing materials.
+        /// </summary>
+        [JsonProperty("accepts_marketing")]
+        public virtual bool AcceptsMarketing { get; set; }
+
+        /// <summary>
         /// Store owner notes on the customer.
         /// 
         /// [text]
@@ -159,10 +172,12 @@ namespace BigCommerce4Net.Domain
 
 
 
-        public virtual void AddAddresses(CustomersAddress address) {
+        public virtual void AddAddresses(CustomersAddress address)
+        {
             Addresses.Add(address);
         }
-        public virtual void AddAddresses(List<CustomersAddress> addresses) {
+        public virtual void AddAddresses(List<CustomersAddress> addresses)
+        {
             ((List<CustomersAddress>)Addresses).AddRange(addresses);
         }
 

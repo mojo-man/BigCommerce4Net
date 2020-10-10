@@ -68,7 +68,7 @@ namespace BigCommerce4Net.Domain
                 DateCreated = value.StringToDateTime();
             }
         }
-        
+
         /// <summary>
         /// The date the order was last modified.
         /// </summary>
@@ -87,7 +87,7 @@ namespace BigCommerce4Net.Domain
                 DateModified = value.StringToDateTime();
             }
         }
-        
+
         /// <summary>
         /// The subtotal of the order excluding tax.
         /// </summary>
@@ -242,6 +242,12 @@ namespace BigCommerce4Net.Domain
         public virtual string Status { get; set; }
 
         /// <summary>
+        /// The source of the order. Usually www, but sometimes it is manual or api
+        /// </summary>
+        [JsonProperty("order_source")]
+        public virtual string OrderSource { get; set; }
+
+        /// <summary>
         /// The total quantity of the items (sum of products * quantity) in the order.
         /// </summary>
         [JsonProperty("items_total")]
@@ -268,7 +274,7 @@ namespace BigCommerce4Net.Domain
         /// </summary>
         [JsonProperty("payment_provider_id")]
         public virtual string PaymentProviderId { get; set; }
-        
+
         /// <summary>
         /// The status of the payment. A payment status may be one of the following, 
         /// depending on the payment method used: 
@@ -456,7 +462,7 @@ namespace BigCommerce4Net.Domain
         /// 
         /// See https://developer.bigcommerce.com/display/API/Addresses
         /// </summary>
-        
+
         [JsonProperty("shipping_addresses")]
         public virtual Resource ResourceShippingAddresses { get; set; }
 
@@ -474,7 +480,7 @@ namespace BigCommerce4Net.Domain
         /// 
         /// See https://developer.bigcommerce.com/display/API/Coupons
         /// </summary>
-        
+
         [JsonProperty("coupons")]
         public virtual Resource ResourceCoupons { get; set; }
 
@@ -493,6 +499,6 @@ namespace BigCommerce4Net.Domain
         [JsonIgnore]
         public virtual IList<OrdersShippingAddress> ShippingAddresses { get; set; }
 
-        
+
     }
 }

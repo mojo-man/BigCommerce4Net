@@ -54,6 +54,20 @@ namespace BigCommerce4Net.Api.ResourceClients
             return base.GetData<List<ProductsSku>>(resourceEndPoint, filter);
         }
 
+        /// <summary>
+        /// New method added to retrieve ProductSKU by sku
+        /// </summary>
+        /// <param name="dummyValue">Ignored - enter a zero</param>
+        /// <param name="sku">The actual sku to find</param>
+        /// <returns></returns>
+        /// <remarks>Not thrilled about the way I had to do this - I used a dummy value so that
+        /// the overload signature would be different (string alone is already in use).</remarks>
+        public IClientResponse<List<ProductsSku>> Get(int dummyValue, string sku) {
+            string resourceEndpoint = string.Format("/products/skus?sku={0}", sku);
+            return base.GetData<List<ProductsSku>>(resourceEndpoint);
+        }
+
+
         public IClientResponse<ProductsSku> Update(int productId, int skuId, string json) {
             string resourceEndpoint = string.Format("/products/{0}/skus/{1}", productId, skuId);
             return base.PutData<ProductsSku>(resourceEndpoint, json);
@@ -71,6 +85,7 @@ namespace BigCommerce4Net.Api.ResourceClients
             string resourceEndpoint = string.Format("/products/{0}/skus", productId);
             return base.PostData<ProductsSku>(resourceEndpoint, obj.SerializeObject());
         }
+
 
         public IClientResponse<bool> Delete(int productId, int skuId) {
             string resourceEndpoint = string.Format("/products/{0}/skus/{1}", productId, skuId);
